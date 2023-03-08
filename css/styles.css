@@ -2,3 +2,160 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+.inner-container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Step 1: style the showing state of the menu starting with mobile view.
+Style the layout and the link for how they will look when visible */
+header {
+    background-color: #fff;
+    padding: 2rem 0;
+}
+
+.menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    display: block;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color: gainsboro;
+    border-radius: 5px;
+}
+
+.menu li {
+    line-height: 40px;
+    text-align: center;
+}
+
+ul.menu li:last-child {
+    padding-bottom: 1rem;
+}
+
+button {
+    background-color: #fff;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+svg {
+    fill: #3f3f3f;
+}
+
+/* Step 2: Now hide the menu. Once its hidden this will be the default stage on load.
+FYI - the display property cannot be transitioned, instead, hide the nav by making it's 
+mex-height 0 */
+header nav {
+    /* style this so that it will overlap the main content */
+    /* this element will be absolute to the viewport */
+    /* add in left and top values left: 0 top: (height of the header) */
+    position: absolute;
+    left: 0;
+    top: 110px;
+    background-color: #fff;
+    width: 100vw;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+}
+
+/* step 3: Create a special class to show the menu. This class name will only exist
+in the CSS for now. Next the javascript will add this class to the hidden element 
+for us (nav) */
+.show-nav {
+    max-height: 225px;
+}
+
+h2 {
+    font-size: 3.125rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+section p {
+    font-size: 1.75rem;
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.gallery {
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+section span {
+    background-color: #87a6ab;
+    color: #fff;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    /* position the span over the image by taking it out of the document flow */
+    position: absolute;
+    /* top, right, bottom, or left values to position it */
+    right: -10px;
+    top: -20px;
+}
+
+.thumbnail {
+    position: relative;
+}
+
+
+/* Step 4: add media query and show the nav by default, hide the button, and style it
+as a horizontal nav */
+@media screen and (min-width: 700px) {
+    .inner-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .toggle-btn {
+        display: none;
+    }
+
+    header nav {
+        max-height: 200px;
+        width: unset;
+        overflow: visible;
+        position: static;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul.menu a {
+        padding: 0 0.75rem;
+    }
+
+    .gallery {
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+}
